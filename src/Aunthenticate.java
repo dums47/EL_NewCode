@@ -24,4 +24,16 @@ public class Aunthenticate {
                 JOptionPane.showMessageDialog(null,"Student Not Found");
         }
     }
-}
+    public static void verify_user(Connection conn, String Username,String Password) throws SQLException{
+        logic_class logic=new logic_class(conn);
+        String username=logic.get_username(conn,Username);
+        String password=logic.get_userpassword(conn,Username);
+        boolean nameMatch=username==Username;
+        boolean passwordMatch=password==Password;
+        if(nameMatch&&passwordMatch)
+            JOptionPane.showMessageDialog(null,"Welcome Back");
+        else
+            JOptionPane.showMessageDialog(null,"Credentials Mismatch");
+        }
+    }
+

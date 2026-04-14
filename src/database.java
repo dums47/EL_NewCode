@@ -2,25 +2,19 @@ import java.sql.*;
 
 public class database {
     public static void main(String[] args){
-     /*   Service object=new Service();
+     /*User user=new User();
+    try {
+         user.ask_user();
+
+     } catch (SQLException e) {
+         throw new RuntimeException(e);
+     }*/
+        Connect_database connection=new Connect_database();
         try {
-            object.Main();
+            generate_account account = new generate_account(connection.connect());
+            account.generateAccount();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }*/
-        final String URL="jdbc:mysql://localhost:3306/student";
-        final String User="root";
-        final String password="el0rm@123$";
-        try {
-            Connection conn = DriverManager.getConnection(URL, User, password);
-            generate_account account = new generate_account(conn);
-            account.generateAccount();
-
-        }catch (SQLException e){
-            e.printStackTrace();
-        }catch (RuntimeException e){
-            e.printStackTrace();
         }
-
     }
     }
