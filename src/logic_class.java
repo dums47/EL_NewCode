@@ -118,8 +118,8 @@ public class logic_class {
         PreparedStatement statement=conn.prepareStatement(sql);
         statement.setString(1,Username);
         ResultSet rst=statement.executeQuery();
-        String username=rst.getString("username");
         rst.next();
+        String username=rst.getString("username");
         return username;
     }
     public static String get_userpassword(Connection conn,String Username)throws SQLException{

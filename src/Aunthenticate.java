@@ -1,4 +1,6 @@
 import java.sql.*;
+import com.password4j.Hash;
+import com.password4j.Password;
 import javax.swing.JOptionPane;
 public class Aunthenticate {
     static int response;
@@ -24,12 +26,13 @@ public class Aunthenticate {
                 JOptionPane.showMessageDialog(null,"Student Not Found");
         }
     }
-    public static void verify_user(Connection conn, String Username,String Password) throws SQLException{
+    public static void verify_user(Connection conn, String Username,String UPassword) throws SQLException{
+        Hash hash_password=Password.hash(UPassword).withBcrypt();
         logic_class logic=new logic_class(conn);
         String username=logic.get_username(conn,Username);
         String password=logic.get_userpassword(conn,Username);
         boolean nameMatch=username==Username;
-        boolean passwordMatch=password==Password;
+        boolean passwordMatch=(hash_password.getResult()).equals(password);
         if(nameMatch&&passwordMatch)
             JOptionPane.showMessageDialog(null,"Welcome Back");
         else

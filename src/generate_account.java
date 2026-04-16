@@ -1,5 +1,7 @@
 import java.security.SecureRandom;
 import java.sql.*;
+import java.util.logging.Level;
+
 import com.password4j.Password;
 import com.password4j.Hash;
 public class generate_account {
@@ -9,6 +11,7 @@ public class generate_account {
      this.conn=conn;
  }
  public void generateAccount()throws SQLException{
+     java.util.logging.Logger.getLogger("com.password4j").setLevel(Level.SEVERE);
      String sql="SELECT id,First_Name FROM student.enrolled_students ";
      String sql2="INSERT INTO student.profiles_details(id,username,password) VALUES (?,?,?)";
      Statement stmt=conn.createStatement();
@@ -29,6 +32,7 @@ public class generate_account {
      }
      pstmt.executeBatch();
      conn.commit();
+     conn.close();
      System.out.println("accounts created");
  }
 }
