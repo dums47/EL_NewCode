@@ -1,4 +1,3 @@
-import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.*;
 public class Connect_database {
     private static final String URL="jdbc:mysql://localhost:3306/student";

@@ -10,6 +10,7 @@ public class generate_account {
  public generate_account(Connection conn){
      this.conn=conn;
  }
+ //This helps generate account for already existing accounts
  public void generateAccount()throws SQLException{
      java.util.logging.Logger.getLogger("com.password4j").setLevel(Level.SEVERE);
      String sql="SELECT id,First_Name FROM student.enrolled_students ";

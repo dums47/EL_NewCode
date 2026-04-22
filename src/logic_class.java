@@ -131,4 +131,5 @@ public class logic_class {
         rst.next();
         return password;
     }
+
 }

@@ -11,17 +11,16 @@ public class Service {
     private static String Email;
     private static String Gender;
     static logic_class logic;
-
     public Service() {
+
         logic = new logic_class(logic_class.conn);
     }
-
     public static void Main() throws SQLException {
         Connection conn = DriverManager.getConnection(URL, User, password);
         System.out.println("Connection successful");
         String id = JOptionPane.showInputDialog("Enter your ID");
         Aunthenticate auth = new Aunthenticate();
-        auth.validate_user(conn, id);
+        auth.welcome_user(conn, id);
         switch (user_preference()) {
             case 1:
                 Create_Student(conn);
@@ -43,14 +42,12 @@ public class Service {
 
         }
     }
-
     private static int user_preference() {
         int response = Integer.parseInt(JOptionPane.showInputDialog("1. Create New Student" + "\n" +
                 "2.Get Student Info" + "\n" + "3.Update Student Info" +
                 "\n" + "4.Delete Student info" + "\n" + "5.Upload CSV "));
         return response;
     }
-
     public static void Create_Student(Connection conn) throws SQLException {
         Firstname = JOptionPane.showInputDialog("Enter your firstname");
         Lastname = JOptionPane.showInputDialog("Enter your Last name");
@@ -58,12 +55,10 @@ public class Service {
         Gender = JOptionPane.showInputDialog("Enter your Gender");
         logic.create_user(Firstname, Lastname, Email, Gender);
     }
-
     private static void Get_Student(Connection conn) throws SQLException {
         String id = JOptionPane.showInputDialog("Enter your ID");
         logic.get_user(id);
     }
-
     private static void Update_Student(Connection conn) throws SQLException {
         int response = Integer.parseInt(JOptionPane.showInputDialog(null, "1.Change UserName" + "\n" + "2.Change Email" + "\n" + "3.Change Gender"));
         if (response == 1) {
@@ -83,18 +78,15 @@ public class Service {
             JOptionPane.showMessageDialog(null, "Invalid input allowed entry 1-3");
         conn.close();
     }
-
     private static void Delete_Student(Connection conn) throws SQLException {
         String id = JOptionPane.showInputDialog("Enter ID");
         logic.Delete_student(conn, id);
     }
-
     private static void Upload_CSV(Connection conn) throws SQLException {
         String filepath = "C://Users//HP//Downloads//MOCK_DATA.csv";
         logic.Upload_file(conn, filepath);
     }
-
-    public static void verify(Connection conn) throws SQLException {
+    public static void Ask_credentials(Connection conn) throws SQLException {
         String username=JOptionPane.showInputDialog(null,"Enter Username");
         String password=JOptionPane.showInputDialog(null,"Enter Password");
         Aunthenticate auth=new Aunthenticate();

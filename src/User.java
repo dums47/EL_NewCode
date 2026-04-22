@@ -8,7 +8,7 @@ public class User {
         Service serve=new Service();
         int option= Integer.parseInt(JOptionPane.showInputDialog(null,"SELECT ACTION"+"\n"+"1.Login"+"\n"+"2.Create account"));
         if(option==1){
-            serve.verify(conn);
+            serve.Ask_credentials(conn);
         } else if (option ==2) {
             serve.Create_Student(conn);
         }else {
